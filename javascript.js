@@ -25,21 +25,12 @@ new function called 'playGame()' use previous function inside it to play a 5 rou
 3. put working 'getComputerChoice' function inside loop function
 */
 
-function count(x) {
-    for (let i = 0; i < x; i++){
-        console.log(`For Loop Number: ${i}`);
+
+function count() {
+    for (let i = 0; i < 5; i++){
+        console.log(getComputerChoice);
     }
 }
-console.log(count(5))
-
-// for (let i = 0; i < 5; i++) {
-//     text += "The number is " + i + "<br>";
-//   }
-
-// for (let i = 0, len = cars.length, text = ""; i < len; i++) {
-//     text += cars[i] + "<br>";
-//   }
-/*
 function getComputerChoice(playerSelection) {
     const choices = ['rock', 'paper', 'scissors'];
     const computerSelection = (choices[(Math.floor(Math.random() * choices.length))]);
@@ -59,4 +50,4 @@ function getComputerChoice(playerSelection) {
 const playerSelection = prompt("Enter your choice (rock, paper, or scissors):").toLowerCase();
 
 console.log(getComputerChoice(playerSelection));
-*/
+
