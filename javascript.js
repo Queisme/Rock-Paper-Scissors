@@ -19,21 +19,19 @@ const tie = `It's a tie! Try again.`;
 const winner = `Winner Winner! Chicken Dinner!`;
 const loser = 'You Lost. Shame. Shame. Shame.';
 const theChoices = ['scissors', 'paper', 'rock'];
-let computerSelection = getComputerChoice(theChoices);
 
-function getComputerChoice(theChoices){
-    return theChoices[Math.floor(Math.random() * theChoices.length)]; //makes computer's pick
+function getComputerChoice(theChoices){ //makes computer's pick
+    return theChoices[Math.floor(Math.random() * theChoices.length)];   
 }
 
 while (computerScore + playerScore < 5) { //keeps game going for best out of 5
     let playerSelection = prompt('Choose your weapon: (Rock, Paper, or Scissors)');
-
+    let computerSelection = getComputerChoice(theChoices);
     playerSelection = playerSelection.toLowerCase();
 
     console.log(`Player's Pick: ${playerSelection[0].toUpperCase() + playerSelection.slice(1)}`);
     console.log(`Computer's Pick: ${computerSelection[0].toUpperCase() + computerSelection.slice(1)}`);
-    
-        
+           
     if (playerSelection === computerSelection) { //tie, winner, loser
             console.log(tie);
         } else if (
@@ -61,4 +59,3 @@ while (computerScore + playerScore < 5) { //keeps game going for best out of 5
     }
     
 
-    
