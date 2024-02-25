@@ -26,7 +26,7 @@ function getComputerChoice(theChoices){ //makes computer's pick
 
 while (computerScore + playerScore < 5) { //keeps game going for best out of 5
     let playerSelection = prompt('Choose your weapon: (Rock, Paper, or Scissors)');
-    let computerSelection = getComputerChoice(theChoices);
+    let computerSelection = getComputerChoice(theChoices);//refreshes computer's pick
     playerSelection = playerSelection.toLowerCase();
 
     console.log(`Player's Pick: ${playerSelection[0].toUpperCase() + playerSelection.slice(1)}`);
