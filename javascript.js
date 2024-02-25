@@ -1,135 +1,64 @@
-//got annoyed, deleted everything, starting over -.- Again.
+//got annoyed, deleted everything, starting over -.- Again. 
 
-//begin with a function called getComputerChoice that will randomly return either ‘Rock’, ‘Paper’ or ‘Scissors’.
-
-//function 'playRound' takes in 'playerSelection' and 'computerSelection' and declares winner or loser or tie.
-
-//function 'playGame' loops game 5 times. Keep score. Report a Winner or loser at the end.
 /*
-function playGame(theChoices) {
-    for (let i = 0; i < 5; i++) {
-        
-        }
-    }
-
-}
-*/
-
-const theChoices = ['scissor', 'paper', 'rock'];
-
-function getComputerChoice(theChoices){
-    return theChoices[Math.floor(Math.random() * theChoices.length)];
-}
-
-const computerSelection = getComputerChoice(theChoices);
-const playerSelection = 'rock' //prompt('Choose your weapon: (Rock, Paper, or Scissor)'.toLowerCase());
-
-function playRound(playerSelection, computerSelection) {
-    if (playerSelection === computerSelection) {
-        return tie;
-    } else if (
-        (playerSelection === "rock" && computerSelection === "scissor") ||
-        (playerSelection === "paper" && computerSelection === "rock") ||
-        (playerSelection === "scissor" && computerSelection === "paper")) {
-        return winner;
-    } else {
-        return loser;
-    }
-}
-const tie = `It's a tie! Try again.`;
-const winner = `Winner Winner! Chicken Dinner!`;
-const loser = 'You Lost. Shame. Shame. Shame.';
+User picks ('rock', 'paper', 'scissors')
+    Game picks its random choice at the same time.
+    Game play begins
+        Compare user pick with game pick to see if user lost, won, or tied
+        give user or computer score depending on who won/lost.
+    Game finishes
+    Repeat 4 more times
+    Give final score out of 5. 
+    Give rating to user. (Winner or Loser)
+*/   
 
 let playerScore = 0;
 let computerScore = 0;
 
-function Score() {
-    if (playRound(playerSelection, computerSelection) === `Winner Winner! Chicken Dinner!`) {
-        playerScore +=1;
-    } else if (playRound(playerSelection, computerSelection) === 'You Lost. Shame. Shame. Shame.') {
-        computerScore +=1;
-    }
+const tie = `It's a tie! Try again.`;
+const winner = `Winner Winner! Chicken Dinner!`;
+const loser = 'You Lost. Shame. Shame. Shame.';
+const theChoices = ['scissors', 'paper', 'rock'];
+let computerSelection = getComputerChoice(theChoices);
+
+function getComputerChoice(theChoices){
+    return theChoices[Math.floor(Math.random() * theChoices.length)]; //makes computer's pick
 }
-console.log(`Player's Pick: ${playerSelection[0].toUpperCase() + playerSelection.slice(1)}`);
-console.log(`Computer's Pick: ${computerSelection[0].toUpperCase() + computerSelection.slice(1)}`);
-console.log(playRound(playerSelection, computerSelection));
-console.log(`Player Score: ${playerScore}`);
-console.log(`Computer Score: ${computerScore}`);
 
+while (computerScore + playerScore < 5) { //keeps game going for best out of 5
+    let playerSelection = prompt('Choose your weapon: (Rock, Paper, or Scissors)');
 
+    playerSelection = playerSelection.toLowerCase();
 
-
-
-
-
-
-
-
-
-// const theChoices = ['scissor', 'paper', 'rock'];
-
-// function getComputerChoice(theChoices){
-//     return theChoices[Math.floor(Math.random() * theChoices.length)];
-// }
-
-
-// // function playGame() {
-// //     for (let i = 0; i < 5; i++) {
+    console.log(`Player's Pick: ${playerSelection[0].toUpperCase() + playerSelection.slice(1)}`);
+    console.log(`Computer's Pick: ${computerSelection[0].toUpperCase() + computerSelection.slice(1)}`);
+    
         
-// //     }
+    if (playerSelection === computerSelection) { //tie, winner, loser
+            console.log(tie);
+        } else if (
+        (playerSelection === 'rock' && computerSelection === 'scissors') ||
+        (playerSelection === 'paper' && computerSelection === 'rock') ||
+        (playerSelection === 'scissors' && computerSelection === 'paper')) {
+            console.log(winner);
+            playerScore += 1;
+        } else {
+            console.log(loser);
+            computerScore += 1;
+        }
+        console.log(`Player Score: ${playerScore}`);
+        console.log(`Computer Score: ${computerScore}`);
+        
+    }
 
-// // }
-
-
-
-// function playRound(playerSelection, computerSelection) {
-//     if (playerSelection === computerSelection) {
-//         return tie;
-//     } else if (
-//         (playerSelection === "rock" && computerSelection === "scissor") ||
-//         (playerSelection === "paper" && computerSelection === "rock") ||
-//         (playerSelection === "scissor" && computerSelection === "paper")) {
-//         return winner;
-//     } else {
-//         return loser;
-//     }
+    if (playerScore + computerScore == 5) {
+        if (playerScore > computerScore) {
+            console.log(`Congratulations! You beat the computer in a best out of 5. You have the big brain.`);
+        } else {
+            console.log('Well, well, well. Best out of 5. Looks like there\'s a loser here. And I\'m not talking about me.');
+        }
+        
+    }
+    
 
     
-    
-    
-// }
-
-
-
-
-
-// function Score() {
-//     if (roundResult === `Winner Winner! Chicken Dinner!`) {
-//         playerScore +=1;
-//     } else if (roundResult == 'You Lost. Shame. Shame. Shame.') {
-//         computerScore +=1;
-//     }
-
-// }
-
-// let playerScore = 0;
-// let computerScore = 0;
-
-// const tie = `It's a tie! Try again.`;
-// const winner = `Winner Winner! Chicken Dinner!`;
-// const loser = 'You Lost. Shame. Shame. Shame.'
-
-// const playerSelection = 'paper' //prompt('Choose your weapon: (Rock, Paper, or Scissor)');
-// const computerSelection = getComputerChoice(theChoices);
-
-// const roundResult = playRound(playerSelection, computerSelection);
-// console.log(`Player's Pick: ${playerSelection[0].toUpperCase() + playerSelection.slice(1)}`);
-// console.log(`Computer's Pick: ${computerSelection[0].toUpperCase() + computerSelection.slice(1)}`);
-// console.log(roundResult);
-// console.log(Score());
-// console.log(`Player Score: ${playerScore}`);
-// console.log(`Computer Score: ${computerScore}`);
-
-
-
-
