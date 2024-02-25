@@ -49,7 +49,7 @@ while (computerScore + playerScore < 5) { //keeps game going for best out of 5
         
     }
 
-    if (playerScore + computerScore == 5) {
+    if (playerScore + computerScore == 5) { //final score out of 5 games
         if (playerScore > computerScore) {
             console.log(`Congratulations! You beat the computer in a best out of 5. You have the big brain.`);
         } else {
