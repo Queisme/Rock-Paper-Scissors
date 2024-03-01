@@ -54,8 +54,8 @@ while (computerScore + playerScore < 5) { //keeps game going for best out of 5
             console.log(`Congratulations! You beat the computer in a best out of 5. You have the big brain.`);
         } else {
             console.log('Well, well, well. Best out of 5. Looks like there\'s a loser here. And I\'m not talking about me.');
-        }
+        };
         
-    }
+    };
     
 
