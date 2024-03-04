@@ -1,61 +1,112 @@
-//got annoyed, deleted everything, starting over -.- Again. 
-
-/*
-User picks ('rock', 'paper', 'scissors')
-    Game picks its random choice at the same time.
-    Game play begins
-        Compare user pick with game pick to see if user lost, won, or tied
-        give user or computer score depending on who won/lost.
-    Game finishes
-    Repeat 4 more times
-    Give final score out of 5. 
-    Give rating to user. (Winner or Loser)
-*/   
-
 let playerScore = 0;
 let computerScore = 0;
+let currentRound = 0;
+const totalRounds = 5;
 
 const tie = `It's a tie! Try again.`;
 const winner = `Winner Winner! Chicken Dinner!`;
 const loser = 'You Lost. Shame. Shame. Shame.';
 const theChoices = ['scissors', 'paper', 'rock'];
 
-function getComputerChoice(theChoices){ //makes computer's pick
-    return theChoices[Math.floor(Math.random() * theChoices.length)];   
-}
+const header1 = document.querySelector('h1');
+const main = document.querySelector('main');
+// choices
+const choices = document.createElement('div');
+main.appendChild(choices);
+choices.classList.add('choices');
+// rock
+const rockButton = document.createElement('button');
+choices.appendChild(rockButton);
+rockButton.classList.add('rock');
+rockButton.textContent = 'Rock';
+// paper
+const paperButton = document.createElement('button');
+choices.appendChild(paperButton);
+paperButton.classList.add('paper');
+paperButton.textContent = 'Paper';
+// scissors
+const scissorsButton = document.createElement('button');
+choices.appendChild(scissorsButton);
+scissorsButton.classList.add('scissors');
+scissorsButton.textContent = 'Scissors';
+// game info
+const gameinfo = document.createElement('div');
+main.appendChild(gameinfo);
+gameinfo.classList.add('game-info');
+// game info // rounds
+const rounds = document.createElement('div');
+gameinfo.appendChild(rounds);
+rounds.classList.add('rounds');
+// game info // computerScoreboard
+const computerScoreboard = document.createElement('div');
+gameinfo.appendChild(computerScoreboard);
+computerScoreboard.classList.add('computerScoreboard');
+//computerscore
+const computerscore = document.createElement('div');
+computerScoreboard.appendChild(computerscore);
+computerscore.classList.add('computerscore');
+// game info //playerScoreboard
+const playerScoreboard = document.createElement('div');
+gameinfo.appendChild(playerScoreboard);
+playerScoreboard.classList.add('playerScoreboard');
+//playerscore
+const playerscore = document.createElement('div');
+playerScoreboard.appendChild(playerscore)
+playerscore.classList.add('playerscore');
+// game info // playerPicks
+const playerPicks = document.createElement('div');
+gameinfo.appendChild(playerPicks);
+playerPicks.classList.add('playerPicks');
+//game info // computerPicks
+const computerPicks = document.createElement('div');
+gameinfo.appendChild(computerPicks)
+computerPicks.classList.add('computerPicks');
+const playerpick = document.createElement('div');
+// result
+const result = document.createElement('div');
+main.appendChild(result);
+result.classList.add('result');
 
-while (computerScore + playerScore < 5) { //keeps game going for best out of 5
-    let playerSelection = prompt('Choose your weapon: (Rock, Paper, or Scissors)');
-    let computerSelection = getComputerChoice(theChoices);//refreshes computer's pick
-    playerSelection = playerSelection.toLowerCase();
+rockButton.addEventListener('click', () => playRound('rock'));
+paperButton.addEventListener('click', () => playRound('paper'));
+scissorsButton.addEventListener('click', () => playRound('scissors'));
 
-    console.log(`Player's Pick: ${playerSelection[0].toUpperCase() + playerSelection.slice(1)}`);
-    console.log(`Computer's Pick: ${computerSelection[0].toUpperCase() + computerSelection.slice(1)}`);
-           
-    if (playerSelection === computerSelection) { //tie, winner, loser
-            console.log(tie);
-        } else if (
+function playRound(playerSelection) {
+    let theChoices = ['scissors', 'rock', 'paper'];
+    let computerSelection = theChoices[Math.floor(Math.random() * theChoices.length)];
+
+    playerPicks.textContent = (`Player's Pick: ${playerSelection[0].toUpperCase() + playerSelection.slice(1)}`);
+    computerPicks.textContent = (`Computer's Pick: ${computerSelection[0].toUpperCase() + computerSelection.slice(1)}`);
+
+    if (playerSelection === computerSelection) {
+        result.textContent = `${tie}`;
+    } else if (
         (playerSelection === 'rock' && computerSelection === 'scissors') ||
         (playerSelection === 'paper' && computerSelection === 'rock') ||
         (playerSelection === 'scissors' && computerSelection === 'paper')) {
-            console.log(winner);
-            playerScore += 1;
-        } else {
-            console.log(loser);
-            computerScore += 1;
-        }
-        console.log(`Player Score: ${playerScore}`);
-        console.log(`Computer Score: ${computerScore}`);
-        
-    }
+        result.textContent = `${winner}`;
+        playerScore += 1;
+        currentRound += 1;
+    } else {
+        result.textContent = `${loser}`;
+        computerScore += 1;
+        currentRound += 1;
+    };
 
-    if (playerScore + computerScore == 5) { //final score out of 5 games
-        if (playerScore > computerScore) {
-            console.log(`Congratulations! You beat the computer in a best out of 5. You have the big brain.`);
+    playerScoreboard.textContent = `Player Score: ${playerScore}`;
+    computerScoreboard.textContent = `Computer Score: ${computerScore}`;
+        
+    rounds.textContent = `Round: ${currentRound} of ${totalRounds}`;
+    if (playerScore + computerScore === 5) {
+        scoreOfFive(playerScore, computerScore);
+    }
+    
+function scoreOfFive(playerScore, computerScore) {
+    if (playerScore > computerScore) {
+            result.textContent = `Congratulations! You have the big brain.`;
         } else {
-            console.log('Well, well, well. Best out of 5. Looks like there\'s a loser here. And I\'m not talking about me.');
+            result.textContent = 'Well, well, well. Looks like there\'s a loser here. And I\'m not talking about me.';
         };
         
     };
-    
-
+};
