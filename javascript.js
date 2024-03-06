@@ -10,23 +10,23 @@ const theChoices = ['scissors', 'paper', 'rock'];
 
 const header1 = document.querySelector('h1');
 const main = document.querySelector('main');
-// choices
-const choices = document.createElement('div');
-main.appendChild(choices);
-choices.classList.add('choices');
+// thepicks
+const thepicks = document.createElement('div');
+main.appendChild(thepicks);
+thepicks.classList.add('thepicks');
 // rock
 const rockButton = document.createElement('button');
-choices.appendChild(rockButton);
+thepicks.appendChild(rockButton);
 rockButton.classList.add('rock');
 rockButton.textContent = 'Rock';
 // paper
 const paperButton = document.createElement('button');
-choices.appendChild(paperButton);
+thepicks.appendChild(paperButton);
 paperButton.classList.add('paper');
 paperButton.textContent = 'Paper';
 // scissors
 const scissorsButton = document.createElement('button');
-choices.appendChild(scissorsButton);
+thepicks.appendChild(scissorsButton);
 scissorsButton.classList.add('scissors');
 scissorsButton.textContent = 'Scissors';
 // game info
@@ -66,18 +66,30 @@ const playerpick = document.createElement('div');
 const result = document.createElement('div');
 main.appendChild(result);
 result.classList.add('result');
+// reload
+const reloadButton = document.createElement('button');
+main.appendChild(reloadButton);
+reloadButton.classList.add('reload');
+reloadButton.textContent = 'Reload';
+reloadButton.addEventListener('click', restart);
+
+if (rounds === totalRounds) {
+    theEnd();
+}
 
 rockButton.addEventListener('click', () => playRound('rock'));
 paperButton.addEventListener('click', () => playRound('paper'));
 scissorsButton.addEventListener('click', () => playRound('scissors'));
 
-function playRound(playerSelection) {
+
+
+function playRound(playerSelection) { //play rounds
     let theChoices = ['scissors', 'rock', 'paper'];
     let computerSelection = theChoices[Math.floor(Math.random() * theChoices.length)];
 
     playerPicks.textContent = (`Player's Pick: ${playerSelection[0].toUpperCase() + playerSelection.slice(1)}`);
     computerPicks.textContent = (`Computer's Pick: ${computerSelection[0].toUpperCase() + computerSelection.slice(1)}`);
-
+    
     if (playerSelection === computerSelection) {
         result.textContent = `${tie}`;
     } else if (
@@ -98,15 +110,20 @@ function playRound(playerSelection) {
         
     rounds.textContent = `Round: ${currentRound} of ${totalRounds}`;
     if (playerScore + computerScore === 5) {
-        scoreOfFive(playerScore, computerScore);
+        theEnd(playerScore, computerScore);
     }
     
-function scoreOfFive(playerScore, computerScore) {
+function theEnd(playerScore, computerScore) { 
+
     if (playerScore > computerScore) {
             result.textContent = `Congratulations! You have the big brain.`;
         } else {
             result.textContent = 'Well, well, well. Looks like there\'s a loser here. And I\'m not talking about me.';
         };
-        
+                
     };
+};
+
+function restart() {
+    window.location.reload();
 };

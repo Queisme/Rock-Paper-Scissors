@@ -30,7 +30,8 @@ body {
   
 .rock, 
 .paper, 
-.scissors {
+.scissors,
+.reload {
     padding: 15px 25px;
     color: white;
     border: 3px solid black;
